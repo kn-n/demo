@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>STENOGRAFFIA</title>
+    <link rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/darkly/bootstrap.min.css"></script>
+    <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
+    <script src="/static/firebase.js" type="module"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">STENOGRAFFIA Admin</a>
+
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/addPlace">Add Place</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/addRoute">Add route</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/surfaceExchange">Surface exchange</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A2b3ae679ef46bf250e75ff546ade90eac6e5710d537db339cb3c06f1d0394dad&amp;source=constructor"
+        width="100%" height="450" frameborder="0">
+</iframe>
+<br>
+<form id="placeForm">
+    <legend>Add place</legend>
+    <div class="form-group">
+        <label for="latitude" class="form-label mt-4">Latitude</label>
+        <input type="text" class="form-control" width="400" id="latitude" placeholder="Enter latitude">
+    </div>
+    <div class="form-group">
+        <label for="longitude" class="form-label mt-4">Longitude</label>
+        <input type="text" class="form-control" width="400" id="longitude" placeholder="Enter longitude">
+    </div>
+    <div class="form-group">
+        <label for="name" class="form-label mt-4">Name</label>
+        <input type="text" class="form-control" width="400" id="name" placeholder="Enter name">
+    </div>
+    <br>
+    <button type="button" class="btn btn-primary" name="Submit" id="Submit">Submit</button>
+</form>
+
+
+
+</body>
+</html>
