@@ -1,37 +1,37 @@
 let map;
 
-function initMap() {
+window.initMap = function() {
   const directionsService = new google.maps.DirectionsService();
   const directionsRenderer = new google.maps.DirectionsRenderer();
   map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 6,
-    center: { lat: 37.7699298, lng: -122.4469157 },
+    zoom: 14,
+    center: { lat: 56.837950, lng: 60.603433},
   });
 
   directionsRenderer.setMap(map);
-  var btn = document.getElementById("Submit")
+  var btn = document.getElementById("GetRoute")
   btn.onclick = function(){
     calculateAndDisplayRoute(directionsService, directionsRenderer);
     };
 }
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-  var haight = new google.maps.LatLng(37.7699298, -122.4469157);
-  var oceanBeach = new google.maps.LatLng(37.7683909618184, -122.51089453697205);
-  const waypts = [];
+  var origin = new google.maps.LatLng(56.843924, 60.653357);
+  var destination = new google.maps.LatLng(56.836939, 60.595380);
+  const waypoints = [];
 
-  waypts.push({
-    location: new google.maps.LatLng(11, 11),
+  waypoints.push({
+    location: new google.maps.LatLng(56.835554, 60.611643),
     stopover: true,
   });
 
   directionsService
     .route({
-      origin: haight,
-      destination: oceanBeach,
-      waypoints: waypts,
+      origin: origin,
+      destination: destination,
+      waypoints: waypoints,
       optimizeWaypoints: true,
-      travelMode: google.maps.TravelMode.DRIVING,
+      travelMode: google.maps.TravelMode.WALKING,
     })
     .then((response) => {
       directionsRenderer.setDirections(response);

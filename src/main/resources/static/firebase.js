@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-analytics.js";
 import { getDatabase, ref, child, get, set } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js";
+import { randomUUID } from "crypto";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIYgp4_fQM9IN3P5GI2a_s2vxNz4ysrjQ",
@@ -51,22 +52,35 @@ const dbRef = ref(getDatabase());
               $('#table').append(content);
           });
 
-var btn = document.getElementById("Submit")
+var btn = document.getElementById("AddPlace")
 
   btn.onclick = function(){
   var lat = $('#latitude').val();
   var lon = $('#longitude').val();
   var name = $('#name').val();
-  console.log(1);
-  get(child(dbRef, `AllPlaces`)).then((snapshot) => {
-  console.log(snapshot.size);
-    const db = getDatabase();
-        set(ref(db, `AllPlaces/`+snapshot.size),{
-            latitude: lat,
-            longitude: lon,
-            name: name
-        });
+  var description = $('#description').val();
+  var image = $('#image').val();
+  var audio = $('#audio').val();
+  let id = randomUUID();
+
+  set(ref(getDatabase(), `AllPlaces/`+id),{
+    id: id,
+    latitude: lat,
+    longitude: lon,
+    name: name,
+    description: description,
+    img_url: image,
+    audio: audio
   });
+//  get(child(dbRef, `AllPlaces`)).then((snapshot) => {
+//  console.log(snapshot.size);
+//    const db = getDatabase();
+//        set(ref(db, `AllPlaces/`+snapshot.size),{
+//            latitude: lat,
+//            longitude: lon,
+//            name: name
+//        });
+//  });
     document.getElementById("latitude").value = ""
     document.getElementById("longitude").value = ""
     document.getElementById("name").value = ""
