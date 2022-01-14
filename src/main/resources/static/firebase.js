@@ -1,7 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-analytics.js";
-import { getDatabase, ref, child, get, set } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js";
-import { randomUUID } from "crypto";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
+import {getAnalytics} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-analytics.js";
+import {child, get, getDatabase, ref, set} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIYgp4_fQM9IN3P5GI2a_s2vxNz4ysrjQ",
@@ -55,14 +54,13 @@ const dbRef = ref(getDatabase());
 var btn = document.getElementById("AddPlace")
 
   btn.onclick = function(){
-  var lat = $('#latitude').val();
-  var lon = $('#longitude').val();
-  var name = $('#name').val();
-  var description = $('#description').val();
-  var image = $('#image').val();
-  var audio = $('#audio').val();
-  let id = randomUUID();
-
+  const lat = $('#latitude').val();
+  const lon = $('#longitude').val();
+  const name = $('#name').val();
+  const description = $('#description').val();
+  const image = $('#image').val();
+  const audio = $('#audio').val();
+  const id = getGuid()
   set(ref(getDatabase(), `AllPlaces/`+id),{
     id: id,
     latitude: lat,
@@ -84,4 +82,14 @@ var btn = document.getElementById("AddPlace")
     document.getElementById("latitude").value = ""
     document.getElementById("longitude").value = ""
     document.getElementById("name").value = ""
+    document.getElementById("description").value = ""
+    document.getElementById("image").value = ""
+    document.getElementById("audio").value = ""
   };
+
+function getGuid() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
