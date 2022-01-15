@@ -117,7 +117,7 @@ input[type="button"].button-secondary:hover {
 </section>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIYgp4_fQM9IN3P5GI2a_s2vxNz4ysrjQ&callback=initMap&v=weekly"
         async></script>
-<form id="placeForm" style="width:800px; margin: 20px 20px;">
+<form id="placeForm" style="width:800px; margin: 20px 20px;" enctype="multipart/form-data" method="post">
     <legend>Add place</legend>
     <table width="800">
         <tr>
@@ -154,7 +154,7 @@ input[type="button"].button-secondary:hover {
             <td>
                 <div class="form-group">
                     <label for="image" class="form-label mt-4">Image</label>
-                    <input class="form-control" type="file" accept="image/jpg, image/jpeg, image/png" id="image">
+                    <input class="form-control" type="file" multiple accept="image/jpg,image/jpeg,image/png" id="image">
                 </div>
             </td>
             <td width="50"></td>

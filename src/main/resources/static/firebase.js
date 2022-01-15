@@ -1,6 +1,7 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
 import {getAnalytics} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-analytics.js";
 import {child, get, getDatabase, ref, set} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js";
+import {getStorage, getDownloadURL, uploadBytes, ref as sRef} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAIYgp4_fQM9IN3P5GI2a_s2vxNz4ysrjQ",
@@ -51,40 +52,53 @@ const dbRef = ref(getDatabase());
               $('#table').append(content);
           });
 
-var btn = document.getElementById("AddPlace")
+const btn = document.getElementById("AddPlace");
 
-  btn.onclick = function(){
+btn.onclick = function(){
   const lat = $('#latitude').val();
   const lon = $('#longitude').val();
   const name = $('#name').val();
   const description = $('#description').val();
-  const image = $('#image').val();
-  const audio = $('#audio').val();
+  const image = $('#image').get(0).files[0];
+  const audio = $('#audio').get(0).files[0];
+  let imgUrl;
+  let audioUrl;
   const id = getGuid()
-  set(ref(getDatabase(), `AllPlaces/`+id),{
-    id: id,
-    latitude: lat,
-    longitude: lon,
-    name: name,
-    description: description,
-    img_url: image,
-    audio: audio
+  const metaImg = {
+    contentType: image.type
+  };
+  const metaAudio = {
+    contentType: audio.type
+  };
+  uploadBytes(sRef(getStorage(),`PlacesGuidePhotos/`+id),image,metaImg).then((snapshot) =>{
+    getDownloadURL(sRef(getStorage(),`PlacesGuidePhotos/`+id))
+        .then((url) => {
+          console.log(url);
+          imgUrl = url
+        });
+    uploadBytes(sRef(getStorage(),`PlacesGuideAudio/`+id),audio,metaAudio).then((snapshot) =>{
+      getDownloadURL(sRef(getStorage(),`PlacesGuideAudio/`+id))
+          .then((url) => {
+            console.log(url);
+            audioUrl = url
+            set(ref(getDatabase(), `Places/`+id),{
+              id: id,
+              latitude: lat,
+              longitude: lon,
+              name: name,
+              description: description,
+              img_url: imgUrl,
+              audio: audioUrl
+            });
+          });
+    });
   });
-//  get(child(dbRef, `AllPlaces`)).then((snapshot) => {
-//  console.log(snapshot.size);
-//    const db = getDatabase();
-//        set(ref(db, `AllPlaces/`+snapshot.size),{
-//            latitude: lat,
-//            longitude: lon,
-//            name: name
-//        });
-//  });
-    document.getElementById("latitude").value = ""
-    document.getElementById("longitude").value = ""
-    document.getElementById("name").value = ""
-    document.getElementById("description").value = ""
-    document.getElementById("image").value = ""
-    document.getElementById("audio").value = ""
+  document.getElementById("latitude").value = ""
+  document.getElementById("longitude").value = ""
+  document.getElementById("name").value = ""
+  document.getElementById("description").value = ""
+  document.getElementById("image").value = ""
+  document.getElementById("audio").value = ""
   };
 
 function getGuid() {
