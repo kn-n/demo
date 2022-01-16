@@ -36,39 +36,21 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIYgp4_fQM9IN3P5GI2a_s2vxNz4ysrjQ&callback=initMap"
         async></script>
 <br>
-<button type="button" class="btn btn-primary" name="GetRoute" id="GetRoute">GetRoute</button>
-<table>
+<h3 style="margin: 20px 20px;">Add route</h3>
+<table style="margin: 20px 20px;" width="90%">
     <tr>
-        <td>
-            <form id="roadForm" style="width:800px; margin: 20px 20px;" enctype="multipart/form-data" method="post">
-                <legend>Add Route</legend>
-                <table width="800">
+        <td width="40%">
+            <form id="roadForm"  enctype="multipart/form-data" method="post">
+                <table>
                     <tr>
-                        <td width="375">
-                            <div class="form-group">
-                                <label for="nameOfRoute" class="form-label mt-4">First Point</label>
-                                <select class="form-select" id="firstPointSelector">
-                                </select>
-                            </div>
-                        </td>
-                        <td width="50"></td>
-                        <td width="375">
-                            <div class="form-group">
-                                <label for="descriptionOfRoute" class="form-label mt-4">Last Point</label>
-                                <select class="form-select" id="secondPointSelector">
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="375">
+                        <td width="50%">
                             <div class="form-group">
                                 <label for="nameOfRoute" class="form-label mt-4">Name</label>
                                 <input type="text" class="form-control" id="nameOfRoute" placeholder="Enter name">
                             </div>
                         </td>
-                        <td width="50"></td>
-                        <td width="375">
+                        <td></td>
+                        <td>
                             <div class="form-group">
                                 <label for="descriptionOfRoute" class="form-label mt-4">Description</label>
                                 <input type="text" class="form-control" id="descriptionOfRoute" placeholder="Enter description">
@@ -82,7 +64,7 @@
                                 <input type="text" class="form-control" id="length" placeholder="Enter length">
                             </div>
                         </td>
-                        <td width="50"></td>
+                        <td></td>
                         <td>
                             <div class="form-group">
                                 <label for="popularPlaces" class="form-label mt-4">Popular places</label>
@@ -93,8 +75,8 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                                <label for="image" class="form-label mt-4">Image</label>
-                                <input class="form-control" type="file" multiple accept="image/jpg,image/jpeg,image/png" id="image">
+                                <label for="images" class="form-label mt-4">Images</label>
+                                <input class="form-control" type="file" multiple accept="image/jpg,image/jpeg,image/png" id="images">
                             </div>
                         </td>
                     </tr>
@@ -103,10 +85,23 @@
                 <button type="button" class="btn btn-primary" name="AddRoute" id="AddRoute">Add route</button>
             </form>
         </td>
+        <td width="5%"></td>
+        <td style="margin: 0 20px; width: 20%;" valign="top">
+            <div class="form-group">
+                <label for="firstPointSelector" class="form-label mt-4">First Point</label>
+                <select class="form-select" id="firstPointSelector">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="secondPointSelector" class="form-label mt-4">Last Point</label>
+                <select class="form-select" id="secondPointSelector">
+                </select>
+            </div>
+        </td>
         <td>
             <div class="form-group">
                 <label for="selectorWaypoints" class="form-label mt-4">Waypoints</label>
-                <select multiple="" class="form-select" id="selectorWaypoints" style="width: 400px; height: 300px;;">
+                <select multiple="" class="form-select" id="selectorWaypoints" style="width: 50%; height: 300px;">
                 </select>
             </div>
         </td>

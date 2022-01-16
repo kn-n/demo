@@ -73,13 +73,11 @@ btn.onclick = function(){
   uploadBytes(sRef(getStorage(),`PlacesGuidePhotos/`+id),image,metaImg).then((snapshot) =>{
     getDownloadURL(sRef(getStorage(),`PlacesGuidePhotos/`+id))
         .then((url) => {
-          console.log(url);
           imgUrl = url
         });
     uploadBytes(sRef(getStorage(),`PlacesGuideAudio/`+id),audio,metaAudio).then((snapshot) =>{
       getDownloadURL(sRef(getStorage(),`PlacesGuideAudio/`+id))
           .then((url) => {
-            console.log(url);
             audioUrl = url
             set(ref(getDatabase(), `Places/`+id),{
               id: id,
